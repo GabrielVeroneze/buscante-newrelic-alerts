@@ -9,8 +9,6 @@
         "lint": "eslint"
     },
     "dependencies": {
-        "@newrelic/next": "^0.9.0",
-        "@types/newrelic": "^9.14.8",
         "newrelic": "^13.4.0",
         "next": "15.5.4",
         "react": "19.1.0",
@@ -19,6 +17,7 @@
     "devDependencies": {
         "@eslint/eslintrc": "^3",
         "@tailwindcss/postcss": "^4",
+        "@types/newrelic": "^9.14.8",
         "@types/node": "^20",
         "@types/react": "^19",
         "@types/react-dom": "^19",
