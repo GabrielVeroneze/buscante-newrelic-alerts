@@ -1,9 +1,9 @@
 'use strict'
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const nrExternals = require('newrelic/load-externals')
+import type { NextConfig } from 'next'
+import nrExternals from 'newrelic/load-externals'
 
-module.exports = {
+const nextConfig: NextConfig = {
     images: {
         remotePatterns: [
             {
@@ -14,12 +14,11 @@ module.exports = {
             },
         ],
     },
-    experimental: {
-        serverComponentsExternalPackages: ['newrelic'],
-    },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    webpack: (config: any) => {
+    serverExternalPackages: ['newrelic'],
+    webpack: (config) => {
         nrExternals(config)
         return config
     },
 }
+
+export default nextConfig
