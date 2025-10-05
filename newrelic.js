@@ -8,30 +8,42 @@
  */
 exports.config = {
     /**
-     * This application_logging block shows the default configuration. That is,
-     * it is not technically necessary; if it were omitted completely, we'd still
-     * get the same configuration applied.
-     *
-     * We are including it here for illustrative purposes. With log forwarding
-     * enabled, the Pino instance returned by `lib/logger.js` will be instrumented
-     * by the `newrelic` agent and ship logs to New Relic so that they can be
-     * viewed in the dashboard.
+     * Array of application names.
      */
-    application_logging: {
-        forwarding: {
-            enabled: true,
-        },
+    app_name: ['buscante'],
+    /**
+     * Your New Relic license key.
+     */
+    license_key: '764a288b00c7998b51258c7c25601d45FFFFNRAL',
+    /**
+     * This setting controls distributed tracing.
+     * Distributed tracing lets you see the path that a request takes through your
+     * distributed system. Enabling distributed tracing changes the behavior of some
+     * New Relic features, so carefully consult the transition guide before you enable
+     * this feature: https://docs.newrelic.com/docs/transition-guide-distributed-tracing
+     * Default is true.
+     */
+    distributed_tracing: {
+        /**
+         * Enables/disables distributed tracing.
+         *
+         * @env NEW_RELIC_DISTRIBUTED_TRACING_ENABLED
+         */
+        enabled: true,
     },
-
     logging: {
         /**
          * Level at which to log. 'trace' is most useful to New Relic when diagnosing
          * issues with the agent, 'info' and higher will impose the least overhead on
          * production applications.
          */
-        level: 'trace',
+        level: 'info',
     },
-
+    application_logging: {
+        forwarding: {
+            enabled: true,
+        },
+    },
     /**
      * When true, all request headers except for those listed in attributes.exclude
      * will be captured for all traces, unless otherwise specified in a destination's
@@ -45,7 +57,7 @@ exports.config = {
          *
          * NOTE: If excluding headers, they must be in camelCase form to be filtered.
          *
-         * @name NEW_RELIC_ATTRIBUTES_EXCLUDE
+         * @env NEW_RELIC_ATTRIBUTES_EXCLUDE
          */
         exclude: [
             'request.headers.cookie',
