@@ -1,5 +1,4 @@
 'use strict'
-
 /**
  * New Relic agent configuration.
  *
@@ -14,23 +13,7 @@ exports.config = {
     /**
      * Your New Relic license key.
      */
-    license_key: '764a288b00c7998b51258c7c25601d45FFFFNRAL',
-    /**
-     * This setting controls distributed tracing.
-     * Distributed tracing lets you see the path that a request takes through your
-     * distributed system. Enabling distributed tracing changes the behavior of some
-     * New Relic features, so carefully consult the transition guide before you enable
-     * this feature: https://docs.newrelic.com/docs/transition-guide-distributed-tracing
-     * Default is true.
-     */
-    distributed_tracing: {
-        /**
-         * Enables/disables distributed tracing.
-         *
-         * @env NEW_RELIC_DISTRIBUTED_TRACING_ENABLED
-         */
-        enabled: true,
-    },
+    license_key: '75b5a2fa0140c80dbdd621215e8a4cb7FFFFNRAL',
     logging: {
         /**
          * Level at which to log. 'trace' is most useful to New Relic when diagnosing
@@ -39,9 +22,14 @@ exports.config = {
          */
         level: 'info',
     },
-    application_logging: {
-        forwarding: {
-            enabled: true,
+    /**
+     * This provides instrumentation for `setTimeout` and `setInterval` calls.
+     * We recommend you disable this instrumentation as it does not not provide
+     * much value and creates a lot of unncessary TraceSegments/Span events.
+     */
+    instrumentation: {
+        timers: {
+            enabled: false,
         },
     },
     /**
@@ -57,7 +45,7 @@ exports.config = {
          *
          * NOTE: If excluding headers, they must be in camelCase form to be filtered.
          *
-         * @env NEW_RELIC_ATTRIBUTES_EXCLUDE
+         * @name NEW_RELIC_ATTRIBUTES_EXCLUDE
          */
         exclude: [
             'request.headers.cookie',
