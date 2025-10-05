@@ -9,11 +9,11 @@ exports.config = {
     /**
      * Array of application names.
      */
-    app_name: ['buscante'],
+    app_name: process.env.NEW_RELIC_APP_NAME,
     /**
      * Your New Relic license key.
      */
-    license_key: '61eb8dbacf6bfffef42895d510f65c81FFFFNRAL',
+    license_key: process.env.NEW_RELIC_LICENSE_KEY,
     logging: {
         /**
          * Level at which to log. 'trace' is most useful to New Relic when diagnosing
