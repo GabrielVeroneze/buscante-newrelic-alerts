@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next'
+import nrExternals from 'newrelic/load-externals'
 
 const nextConfig: NextConfig = {
     images: {
@@ -10,6 +11,13 @@ const nextConfig: NextConfig = {
                 pathname: '/books/content',
             },
         ],
+    },
+    experimental: {
+        serverComponentsExternalPackages: ['newrelic'],
+    },
+    webpack: (config) => {
+        nrExternals(config)
+        return config
     },
 }
 
