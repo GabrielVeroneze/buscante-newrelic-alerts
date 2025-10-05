@@ -2,6 +2,7 @@ import { Poppins } from 'next/font/google'
 import { BooksProvider } from '@/context/BooksProvider'
 import type { Metadata } from 'next'
 import Header from '@/components/header'
+import 'newrelic'
 import './globals.css'
 
 const poppins = Poppins({
@@ -9,6 +10,7 @@ const poppins = Poppins({
     weight: ['400', '600'],
     style: 'normal',
 })
+
 export const metadata: Metadata = {
     title: 'Buscante',
     description: 'Sua estante virtual de livros',
