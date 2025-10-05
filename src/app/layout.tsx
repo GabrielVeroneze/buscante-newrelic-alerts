@@ -2,7 +2,6 @@ import { Poppins } from 'next/font/google'
 import { BooksProvider } from '@/context/BooksProvider'
 import type { Metadata } from 'next'
 import Header from '@/components/header'
-import Script from 'next/script'
 import './globals.css'
 
 const poppins = Poppins({
@@ -15,8 +14,6 @@ export const metadata: Metadata = {
     description: 'Sua estante virtual de livros',
 }
 
-const newRelicScript = ``
-
 interface RootLayoutProps {
     children: React.ReactNode
 }
@@ -24,9 +21,6 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
     return (
         <html lang="pt-BR">
-            <head>
-                <Script id="newRelicScript">{newRelicScript}</Script>
-            </head>
             <body className={poppins.className}>
                 <BooksProvider>
                     <Header />
