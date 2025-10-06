@@ -1,8 +1,9 @@
 import { Poppins } from 'next/font/google'
 import { BooksProvider } from '@/context/BooksProvider'
 import type { Metadata } from 'next'
+import newrelic from 'newrelic'
+import Script from 'next/script'
 import Header from '@/components/header'
-import 'newrelic'
 import './globals.css'
 
 const poppins = Poppins({
@@ -23,6 +24,14 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
     return (
         <html lang="pt-BR">
+            <head>
+                <Script
+                    id="new-relic"
+                    dangerouslySetInnerHTML={{
+                        __html: newrelic.getBrowserTimingHeader(),
+                    }}
+                />
+            </head>
             <body className={poppins.className}>
                 <BooksProvider>
                     <Header />
