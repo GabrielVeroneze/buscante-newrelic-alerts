@@ -2,6 +2,7 @@
 
 import type { NextConfig } from 'next'
 import nrExternals from 'newrelic/load-externals'
+import './newrelic'
 
 const nextConfig: NextConfig = {
     images: {
